@@ -1,0 +1,21 @@
+{
+  "name": "azf-mytos-telenor",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "standard"
+  },
+  "author": {
+    "name": "Rune Moskvil Lyngås",
+    "email": "rune.moskvil.lyngaas@vtfk.no",
+    "url": "https://github.com/runely"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "fast-xml-parser": "^4.0.7"
+  }
+}
