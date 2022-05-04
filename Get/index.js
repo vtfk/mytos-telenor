@@ -1,35 +1,18 @@
-const getVismaData = require('../lib/get-visma-data')
-const convertToJson = require('../lib/convert-xml-to-json.js')
-const sanitize = require('../lib/sanitize-visma-data')
+const getVismaData = require('../lib/Visma/get-visma-data')
+const getMytosData = require('../lib/Mytos/get-mytos-data')
+const generateResponse = require('../lib/generate-response')
 
 module.exports = async function (context, req) {
-  const vismaData = await getVismaData()
-  if (!vismaData) {
-    return {
-      status: 400,
-      body: {
-        message: 'Data ikke mottatt fra Visma'
-      }
-    }
-  }
-
-  // convert xml from Visma to JSON
-  const vismaJson = await convertToJson(vismaData)
-  if (!vismaJson) {
-    return {
-      status: 400,
-      body: {
-        message: 'Konvertering fra xml til json feilet'
-      }
-    }
-  }
-
-  const persons = Array.isArray(vismaJson.personsXML.person) ? vismaJson.personsXML.person : [vismaJson.personsXML.person]
-  console.time('sanitize')
-  const sanitized = sanitize(persons)
-  console.timeEnd('sanitize')
-  return {
-    status: 200,
-    body: sanitized
+  try {
+    const results = await Promise.all([getVismaData(), getMytosData()])
+    const visma = results[0]
+    const mytos = results[1]
+    return generateResponse({
+      mytos,
+      visma
+    })
+  } catch (error) {
+    const status = error.status || 400
+    return generateResponse(error, status)
   }
 }
