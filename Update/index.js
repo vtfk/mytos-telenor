@@ -29,10 +29,7 @@ module.exports = async function (context, req) {
     const mytosPayload = generateMytosPayload(usersWithPhone)
     const updated = await updateMytosData(mytosPayload)
     return generateResponse({
-      updated,
-      mytosPayload,
-      mytos: data.mytos,
-      visma: data.visma
+      updated
     })
   } catch (error) {
     if (error instanceof HTTPError) return error.toJSON()
