@@ -1,8 +1,8 @@
 const getVismaData = require('../lib/Visma/get-visma-data')
 const filterVismaData = require('../lib/Visma/filter-visma-data')
-const { getMytosData } = require('../lib/Mytos/mytos-data')
+const { getMytosData, updateMytosData } = require('../lib/Mytos/mytos-data')
 const generateResponse = require('../lib/generate-response')
-const updateUsers = require('../lib/Mytos/update-users')
+const generateMytosPayload = require('../lib/Mytos/generate-mytos-payload')
 
 module.exports = async function (context, req) {
   try {
@@ -10,7 +10,8 @@ module.exports = async function (context, req) {
     const visma = results[0]
     const mytos = results[1]
     const usersWithPhone = filterVismaData(visma, mytos)
-    const updated = await updateUsers(usersWithPhone)
+    const mytosPayload = generateMytosPayload(usersWithPhone)
+    const updated = await updateMytosData(mytosPayload)
     return generateResponse({
       updated,
       usersWithPhone,
