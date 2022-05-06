@@ -20,7 +20,7 @@ module.exports = async function (context, req) {
     }
 
     if (!data.visma && !data.mytos) {
-      const results = await Promise.all([getVismaData(), getMytosData()])
+      const results = await Promise.all([getVismaData(req.body), getMytosData()])
       data.visma = results[0]
       data.mytos = results[1]
     }

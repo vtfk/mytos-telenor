@@ -2,6 +2,8 @@ module.exports = {
   DEMO: (process.env.DEMO && process.env.DEMO.toLowerCase() === 'true') || false,
   VISMA: {
     URL: process.env.VISMA_URL,
+    URL_NAME: process.env.VISMA_URL_NAME,
+    URL_SSN: process.env.VISMA_URL_SSN,
     USERNAME: process.env.VISMA_USERNAME,
     PASSWORD: process.env.VISMA_PASSWORD
   },
