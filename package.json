@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "test": "standard"
+    "test": "standard && jest --verbose"
   },
   "author": {
     "name": "Rune Moskvil Lyngås",
@@ -12,11 +12,24 @@
     "url": "https://github.com/runely"
   },
   "devDependencies": {
+    "@types/jest": "^27.5.0",
+    "jest": "^28.0.3",
     "standard": "^17.0.0"
   },
   "dependencies": {
     "@vtfk/logger": "^4.3.1",
     "axios": "^0.27.2",
     "fast-xml-parser": "^4.0.7"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "testMatch": [
+      "**/tests/**/*test.[jt]s?(x)",
+      "**/?(*.)+.(spec|test).[jt]s?(x)"
+    ]
   }
 }
