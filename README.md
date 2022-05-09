@@ -65,6 +65,54 @@ No body or query needed
 }
 ```
 
+## Setup
+
+Create a `.env` file:
+
+### Required environments
+```text
+VISMA_URL=http://visma-srv:8080/hrm_ws/secure/persons/company/1/start-id/0/end-id/99999999
+VISMA_URL_NAME=http://visma-srv:8080/hrm_ws/secure/persons/name/firstname/%firstname%/lastname/%lastname%
+VISMA_URL_SSN=http://visma-srv:8080/hrm_ws/secure/persons/ssn/%ssn%
+VISMA_USERNAME=<visma-username>
+VISMA_PASSWORD=<visma-password>
+MYTOS_URL_GET_USERS=https://batchedit.mytos.no/api/users?page=0&size=10000&policies=true
+MYTOS_URL_GET_USER=https://batchedit.mytos.no/api/users/%phoneNumber%?policies=true
+MYTOS_URL_UPDATE_USERS=https://batchedit.mytos.no/api/users/list
+MYTOS_USERNAME=<mytos-customer-key>
+MYTOS_PASSWORD=<mytos-api-key>
+```
+
+### Optional environments
+```text
+PAPERTRAIL_HOST=<papertrail-host>
+PAPERTRAIL_TOKEN=<papertrail-token>
+TEAMS_WEBHOOK_URL=<webhook-url>
+NODE_ENV=production
+```
+
+> Add `PAPERTRAIL_*` + `NODE_ENV` to activate logging to papertrail
+
+> Add `TEAMS_WEBHOOK_URL` + `NODE_ENV` to activate logging to teams (***by default only warnings and errors***)
+
+## Scripts
+
+### start
+
+Will get users from `Visma` and `Mytos` API's and update users in `Mytos`
+
+### debug
+
+Same as `start` aswell as save a local copy of `Visma` and `Mytos` data
+
+### demo
+
+Will get users from `Visma` and `Mytos` API's **BUT** will not update `Mytos`
+
+### debug:demo
+
+Will get users from `Visma` and `Mytos` API's aswell as save a local copy of `Visma` and `Mytos` data **BUT** will not update `Mytos`
+
 ## Links
 
 [Mytos API](https://batchedit.mytos.no/swagger/ui/index)
