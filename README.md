@@ -100,18 +100,30 @@ NODE_ENV=production
 ### start
 
 Will get users from `Visma` and `Mytos` API's and update users in `Mytos`
+```bash
+npm run start
+```
 
 ### debug
 
 Same as `start` aswell as save a local copy of `Visma` and `Mytos` data
+```bash
+npm run debug
+```
 
 ### demo
 
 Will get users from `Visma` and `Mytos` API's **BUT** will not update `Mytos`
+```bash
+npm run demo
+```
 
 ### debug:demo
 
 Will get users from `Visma` and `Mytos` API's aswell as save a local copy of `Visma` and `Mytos` data **BUT** will not update `Mytos`
+```bash
+npm run debug:demo
+```
 
 ## Links
 
