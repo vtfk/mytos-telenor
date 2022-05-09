@@ -2,7 +2,7 @@ const { logConfig } = require('@vtfk/logger')
 const converter = require('../lib/convert-xml-to-json')
 const { getXml } = require('./data/visma-data')
 const repack = require('../lib/Visma/repack-visma-data')
-const { getJson, phoneNumber, email } = require('./data/mytos-data')
+const { getJson, phoneNumber } = require('./data/mytos-data')
 const filterData = require('../lib/Visma/filter-visma-data')
 
 logConfig({
