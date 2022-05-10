@@ -1,4 +1,5 @@
 (async () => {
+  require('./config')
   const { logConfig, logger } = require('@vtfk/logger')
   const yargs = require('yargs/yargs')
   const { hideBin } = require('yargs/helpers')
