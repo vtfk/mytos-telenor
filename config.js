@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 module.exports = {
-  DEMO: (process.env.DEMO && process.env.DEMO.toLowerCase() === 'true') || false,
   VISMA: {
     URL: process.env.VISMA_URL,
     URL_NAME: process.env.VISMA_URL_NAME,
