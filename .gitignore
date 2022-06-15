@@ -44,3 +44,4 @@ __pycache__/
 # local data files
 data/**/*.json
 data/**/*.xml
+data/mytos_updateResult*

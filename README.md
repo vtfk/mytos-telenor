@@ -18,53 +18,35 @@ There can be a maximum of `5` **Dim\*** entries
 }
 ```
 
-## `POST /update`
+## Update users in Mytos (based on Visma)
 
-### Update all users in Mytos
+Use argument `--DEMO=true` to prevent updating Mytos (files saved to ./data/demo)
 
-`Body`
+Use argument `--debug=true` to save additional information from visma (files saved to ./data/debug)
 
-No body or query needed
+### Update all users
 
-`Response`
-```json
-{
-  "updated": "900 of 900 users updated sucessfully. "
-}
-```
+`ALL` will use the **ALL_VISMA_URL** from environments, so make sure *start-id* is set to `0` and *end-id* is set to `99999999`
 
-### Update one person by **firstName**/**lastName**
+#### In `PROD`
 
-`Body`
-```json
-{
-  "firstName": "Bjarne",
-  "lastName": "Betjent"
-}
-```
+> node index.js --env=PROD --visma=ALL
 
-`Response`
-```json
-{
-  "updated": "1 of 1 users updated sucessfully. "
-}
-```
+#### In `TEST`
 
-### Update one person by **ssn**
+> node index.js --env=TEST --visma=ALL
 
-`Body`
-```json
-{
-  "ssn": "01234567891"
-}
-```
+### Update selected users
 
-`Response`
-```json
-{
-  "updated": "1 of 1 users updated sucessfully. "
-}
-```
+`SELECTED` will use the **SELECTED_VISMA_URL** from environments, so make sure to update it to correct *start-id* and *end-id*
+
+#### In `PROD`
+
+> node index.js --env=PROD --visma=SELECTED
+
+#### In `TEST`
+
+> node index.js --env=TEST --visma=SELECTED
 
 ## Setup
 
@@ -72,16 +54,30 @@ Create a `.env` file:
 
 ### Required environments
 ```text
-VISMA_URL=http://visma-srv:8080/hrm_ws/secure/persons/company/1/start-id/0/end-id/99999999
+# Visma API PROD
+ALL_VISMA_URL=http://visma-srv:8080/hrm_ws/secure/persons/company/1/start-id/0/end-id/99999999
+
+# Visma API TEST
+SELECTED_VISMA_URL=http://visma-srv:8080/hrm_ws/secure/persons/company/1/start-id/01010101/end-id/01010101
+
+# Visma API Shared
 VISMA_URL_NAME=http://visma-srv:8080/hrm_ws/secure/persons/name/firstname/%firstname%/lastname/%lastname%
 VISMA_URL_SSN=http://visma-srv:8080/hrm_ws/secure/persons/ssn/%ssn%
 VISMA_USERNAME=<visma-username>
 VISMA_PASSWORD=<visma-password>
+
+# Mytos API Shared
 MYTOS_URL_GET_USERS=https://batchedit.mytos.no/api/users?page=0&size=10000&policies=true
 MYTOS_URL_GET_USER=https://batchedit.mytos.no/api/users/%phoneNumber%?policies=true
 MYTOS_URL_UPDATE_USERS=https://batchedit.mytos.no/api/users/list
-MYTOS_USERNAME=<mytos-customer-key>
-MYTOS_PASSWORD=<mytos-api-key>
+
+# Mytos API PROD
+PROD_MYTOS_USERNAME=<mytos-customer-key-prod>
+PROD_MYTOS_PASSWORD=<mytos-api-key-prod>
+
+# Mytos API TEST
+TEST_MYTOS_USERNAME=<mytos-customer-key-test>
+TEST_MYTOS_PASSWORD=<mytos-api-key-test>
 ```
 
 ### Optional environments
@@ -98,32 +94,116 @@ NODE_ENV=production
 
 ## Scripts
 
-### start
+### prod:all
 
-Will get users from `Visma` and `Mytos` API's and update users in `Mytos`
+Will get all users from `Visma` and `Mytos` (PROD) and update users in `Mytos`
 ```bash
-npm run start
+npm run prod:all
 ```
 
-### debug
+### debug:prod:all
 
-Same as `start` aswell as save a local copy of `Visma` and `Mytos` data
+Same as `prod:all` aswell as save a local copy of `Visma` and `Mytos` (PROD) data
 ```bash
-npm run debug
+npm run debug:prod:all
 ```
 
-### demo
+### demo:prod:all
 
-Will get users from `Visma` and `Mytos` API's **BUT** will not update `Mytos`
+Will get all users from `Visma` and `Mytos` (PROD) **BUT** will not update `Mytos`
 ```bash
-npm run demo
+npm run demo:prod:all
 ```
 
-### debug:demo
+### debug:demo:prod:all
 
-Will get users from `Visma` and `Mytos` API's aswell as save a local copy of `Visma` and `Mytos` data **BUT** will not update `Mytos`
+Will get all users from `Visma` and `Mytos` (PROD) aswell as save a local copy of `Visma` and `Mytos` (PROD) data **BUT** will not update `Mytos`
 ```bash
-npm run debug:demo
+npm run debug:demo:prod:all
+```
+
+### test:all
+
+Will get all users from `Visma` and `Mytos` (TEST) and update users in `Mytos`
+```bash
+npm run test:all
+```
+
+### debug:test:all
+
+Same as `test:all` aswell as save a local copy of `Visma` and `Mytos` (TEST) data
+```bash
+npm run debug:test:all
+```
+
+### demo:test:all
+
+Will get all users from `Visma` and `Mytos` (TEST) **BUT** will not update `Mytos`
+```bash
+npm run demo:test:all
+```
+
+### debug:demo:test:all
+
+Will get all users from `Visma` and `Mytos` (TEST) aswell as save a local copy of `Visma` and `Mytos` (TEST) data **BUT** will not update `Mytos`
+```bash
+npm run debug:demo:test:all
+```
+
+### prod:selected
+
+Will get selected users from `Visma` and `Mytos` (PROD) and update users in `Mytos`
+```bash
+npm run prod:selected
+```
+
+### debug:prod:selected
+
+Same as `prod:selected` aswell as save a local copy of `Visma` and `Mytos` (PROD) data
+```bash
+npm run debug:prod:selected
+```
+
+### demo:prod:selected
+
+Will get selected users from `Visma` and `Mytos` (PROD) **BUT** will not update `Mytos`
+```bash
+npm run demo:prod:selected
+```
+
+### debug:demo:prod:selected
+
+Will get selected users from `Visma` and `Mytos` (PROD) aswell as save a local copy of `Visma` and `Mytos` (PROD) data **BUT** will not update `Mytos`
+```bash
+npm run debug:demo:prod:selected
+```
+
+### test:selected
+
+Will get selected users from `Visma` and `Mytos` (TEST) and update users in `Mytos`
+```bash
+npm run test:selected
+```
+
+### debug:test:selected
+
+Same as `test:selected` aswell as save a local copy of `Visma` and `Mytos` (TEST) data
+```bash
+npm run debug:test:selected
+```
+
+### demo:test:selected
+
+Will get selected users from `Visma` and `Mytos` (TEST) **BUT** will not update `Mytos`
+```bash
+npm run demo:test:selected
+```
+
+### debug:demo:test:selected
+
+Will get selected users from `Visma` and `Mytos` (TEST) aswell as save a local copy of `Visma` and `Mytos` (TEST) data **BUT** will not update `Mytos`
+```bash
+npm run debug:demo:test:selected
 ```
 
 ## Links
