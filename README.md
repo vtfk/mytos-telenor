@@ -4,7 +4,7 @@ Update users in `Mytos` based on users from `Visma` which has payed phone from u
 
 ## Payload to Mytos
 
-We only need to update `Email` and `Dim*` (where **\*** represents an incrementing number from 1 for all costCentres on a user)
+`Email`, `EmployeeId` and `Dim*` (where **\*** represents an incrementing number from 1 for all costCentres on a user) will be updated
 
 There can be a maximum of `5` **Dim\*** entries
 
@@ -12,6 +12,7 @@ There can be a maximum of `5` **Dim\*** entries
 {
   "Phonenumber": "12345678",
   "Email": "bjarne.betjent@vtfk.no",
+  "EmployeeId": "01122201",
   "Dim1": "12345",
   "Dim2": "123"
 }
