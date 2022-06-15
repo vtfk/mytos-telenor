@@ -10,10 +10,10 @@
   const HTTPError = require('./lib/http-error')
 
   const args = yargs(hideBin(process.argv)).argv
-  const { DEMO } = args
-  if (DEMO) {
+  const { debug, DEMO } = args
+  if (DEMO || debug) {
     logConfig({
-      prefix: 'DEMO'
+      prefix: `${debug ? 'debug' : ''}${debug && DEMO ? ' - DEMO' : DEMO ? 'DEMO' : ''}`
     })
   }
 
