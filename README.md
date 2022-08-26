@@ -6,6 +6,8 @@ Update users in `Mytos` based on users from `Visma` which has payed phone from u
 
 `Email`, `EmployeeId` and `Dim*` (where **\*** represents an incrementing number from 1 for all costCentres on a user) will be updated
 
+> `dimension1` from **costCentres** will be ignored as we don't use it. We will use `dimension2` and forward
+
 There can be a maximum of `5` **Dim\*** entries
 
 ```json
