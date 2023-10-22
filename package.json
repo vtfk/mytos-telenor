@@ -33,7 +33,7 @@
     "standard": "^17.0.0"
   },
   "dependencies": {
-    "@vtfk/logger": "^4.3.1",
+    "@vtfk/logger": "^5.0.0",
     "axios": "^0.27.2",
     "dotenv": "^16.0.0",
     "fast-xml-parser": "^4.0.7",
