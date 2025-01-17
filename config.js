@@ -25,12 +25,12 @@ require('dotenv').config()
  */
 
 /**
- * 
+ *
  * @param {String} env "PROD" | "TEST" - Which environment to use
  * @param {String} visma "ALL" | "SELECTED" - Which Visma URL to use. If not passed, "ALL" will be used
  * @returns {ConfigObject} Configobject
  */
-module.exports = (env, visma = "ALL") => {
+module.exports = (env, visma = 'ALL') => {
   return {
     VISMA: {
       URL: visma === 'ALL' ? process.env.ALL_VISMA_URL : process.env.SELECTED_VISMA_URL,
